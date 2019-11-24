@@ -1,0 +1,108 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc} % Change according your file encoding
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+
+\newtheorem{obs}{Observation}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition} % amsthm only
+\newtheorem{definition}{Definition}
+
+%\newtheorem{def}{Definition}
+
+\begin{document}
+
+Carlos Segarra \hfill Tuesday, November 26th
+
+\vspace{15pt}
+
+\textbf{\Large Graph Theory: Some Applications of the Laplacian Matrix - Problem 4}
+
+\vspace{20pt}
+
+\textbf{\textit{(4) A multigraph $G$ is a graph where multiple edges and loops are allowed. Let G be a loopless multigraph. Prove a version of the Matrix-Tree theorem for multigraphs.}}
+
+\vspace{3pt}
+
+First we will start with the definition of edge-connectivity and a reminder of a theorem (Tutte) we will use to prove the statement.
+
+\begin{definition}[Edge Connectivity]
+    Given a graph $G$, it's edge connectivity, $\lambda(G)$ is the minimum number of edges whose deletion disconnect G.
+\end{definition}
+
+From the definition, it is clear that $\lambda(G) \leq \delta(G)$, which in our case implies $2k \leq \lambda(G) \leq 2k + 1$. To see the former, if we remove all the incident vertices to the vertex of smallest degree, we disconnect $G$, proving to be an upper bound.
+
+\begin{theorem}[Matrix-Tree Theorem]
+    The number $\tau(G)$ of spanning trees of a graph $G$ is
+    $$\tau(G) = \text{det}\left(L_{(i,i)}\right) = \frac{1}{n} \mu_2 \dots \mu_n$$
+    where $L_{(i,i)}$ denotes the minor of the Laplacian matrix $L$ of $G$ obtained by deleting row $i$ and column $i$, and $0 = \mu_1 < \mu_2 \leq \dots \leq \mu_n$ denote the eigenvalues of $L$.
+\end{theorem}
+
+Further, let us make the following observation on $G$'s cardinality, where we use the Handshaking lemma and the fact that $G$ is $(2k + 1)$-regular.
+$$2|E(G)| = \sum_{v \in V(G)} d(v) = |V(G)|(2k + 1) \Rightarrow |V(G)| \equiv 0 \mod 2$$
+
+Knowing that the cardinality is even, lets us easily check that Tutte's condition holds if $|S| = 0$. From now on we will then assume $|S| > 0$. Again, using $G$'s regularity, the following inequality holds:
+\begin{equation}\label{edge-ineq}
+\#\lbrace\text{edges incident to S from odd components}\rbrace \leq \#\lbrace\text{edges incident to S}\rbrace \leq |S|(2k + 1)
+\end{equation}
+
+Let now $C$ be an odd component of $G - S$. If we count all the vertices incident to some vertex of $C$, we have from one side the $(2k + 1)$ regularity, and from the other the edges within $C$ (beginning and end inside C) and those leaving $C$. By construction, all edges leaving C must necessarily be incident to $S$ (see the supporting drawing). Hence, the following holds:
+$$|C|(2k + 1) = 2|E(C)| + |E(C,G-C)| = 2|E(C)| + |E(C,S)|$$
+
+\begin{figure}[h!]
+    \centering
+    \resizebox{.8\linewidth}{!}{
+        \begin{tikzpicture}
+            % LHS Drawing
+            \draw (0,0) circle (3cm);
+            \node[circle, draw = black] (node-1) at (-1,-1) {};
+            \node[circle, draw = black] (node-2) at (-1,1) {};
+            \node[circle, draw = black] (node-3) at (1.5,-1) {};
+            \node[circle, draw = black] (node-4) at (-1,-2) {};
+            \node[circle, draw = black] (node-5) at (0,1.5) {};
+            \draw[dashed] (node-1) -- (node-2);
+            \draw[dashed] (node-1) -- (node-3);
+            \draw[dashed] (node-1) -- (node-4);
+            \draw[dashed] (node-2) -- (node-3);
+            \draw[dashed] (node-3) -- (node-4);
+            \draw[dashed] (node-3) -- (2,4.5);
+            \draw[dashed] (node-5) -- (4,4.5);
+
+            % Separating Line
+            \draw[very thick] (10, -3) -- (10, 10);
+
+            % RHS Drawing
+            \draw (20, 0) circle (3cm) node (C) {\Huge C};
+            \draw (17, 5) circle (1cm) node {\Huge Even};
+            \draw[rounded corners] (30, -3) rectangle (33, 10);
+            \node at (31.5, 6) {\Huge S};
+            \draw(40, 0) circle (2.5cm) node (N1) {\Huge Odd};
+            \draw(37.5, 5) circle (1.5cm) node (N2) {\Huge Odd};
+            \draw[dashed, thick] (C.0) -- (31.5, 0);
+            \draw[dashed, thick] (C.10) -- (31.5, 2);
+            \draw[dashed, thick] (C.20) -- (31.5, 4);
+            \draw[dashed, thick] (C.45) -- (31.5, 8);
+            \draw[dashed, thick] (N2.200) -- (32.5, 5);
+            \draw[dashed, thick] (N2.170) -- (32.5, 7);
+            \draw[dashed, thick] (N1.200) -- (32.5, -1);
+            \draw[dashed, thick] (N1.170) -- (32.5, 1);
+            \node at (28, 4.5) {\Huge $\vdots$};
+            \node at (28, 4) {\Huge $\vdots$};
+            \draw[very thick, red, dashed] (26, -3) -- (26, 7) node[text=red,anchor=south] {\Huge $E(C, S) \geq \lambda(G)$};
+        \end{tikzpicture}
+    }
+\end{figure}
+
+Moreover, from the previous equality we observe that LHS has the parity of $|C|$, and the RHS has the parity of $|E(C,S)|$. Thus, $|C|$ and $|E(C,S)|$ have the same parity. In particular, $|E(C,S)|$ is odd. Lastly, given that $S$ disconnects $G$, by definition of edge connectivity we have
+$$|E(C,S)| \geq \lambda(G) = \lbrace 2k, 2k + 1 \rbrace \overset{|E(C,S)| odd}{\Longrightarrow} |E(C,S)| \geq 2k + 1$$
+
+Inserting this last inequality to (\ref{edge-ineq}) we have:
+$$c_o(G-S)(2k + 1) \leq \#\lbrace\text{edges incident to S from odd components}\rbrace \leq |S|(2k + 1) \Rightarrow c_o(G-S) \leq |S|$$
+which is exactly Tutte's condition, and hecne $G$ contains a perfect matching.
+
+\end{document}
