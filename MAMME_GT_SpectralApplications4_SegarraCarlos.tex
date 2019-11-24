@@ -5,10 +5,12 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{setspace}
 \usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 
 \newtheorem{obs}{Observation}
 \newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 
 \theoremstyle{definition} % amsthm only
 \newtheorem{definition}{Definition}
@@ -16,6 +18,7 @@
 %\newtheorem{def}{Definition}
 
 \begin{document}
+\onehalfspacing
 
 Carlos Segarra \hfill Tuesday, November 26th
 
@@ -29,13 +32,13 @@ Carlos Segarra \hfill Tuesday, November 26th
 
 \vspace{3pt}
 
-First we will start with the definition of edge-connectivity and a reminder of a theorem (Tutte) we will use to prove the statement.
+Let us recall that a loopless multigraph only differs from a simple graph in the fact that some edges may appear "repeated".
+Using this intuition we can think on how the solution of the problem may look like.
+To do so, let us use a very simple combinatorial argument.
+Given that the we know the number of spanning trees for a simple connected graph $G$, if we now allow multiple edges between two vertices, the number of new spanning trees derived from that original one will be exactly the productory of the number of repeated (or multiple) edges.
 
-\begin{definition}[Edge Connectivity]
-    Given a graph $G$, it's edge connectivity, $\lambda(G)$ is the minimum number of edges whose deletion disconnect G.
-\end{definition}
-
-From the definition, it is clear that $\lambda(G) \leq \delta(G)$, which in our case implies $2k \leq \lambda(G) \leq 2k + 1$. To see the former, if we remove all the incident vertices to the vertex of smallest degree, we disconnect $G$, proving to be an upper bound.
+To prove the theorem in a more formal manner, we will use this same intution and make use of the extended Cauchy-Binet formula given in class.
+Let us state both.
 
 \begin{theorem}[Matrix-Tree Theorem]
     The number $\tau(G)$ of spanning trees of a graph $G$ is
@@ -43,66 +46,26 @@ From the definition, it is clear that $\lambda(G) \leq \delta(G)$, which in our 
     where $L_{(i,i)}$ denotes the minor of the Laplacian matrix $L$ of $G$ obtained by deleting row $i$ and column $i$, and $0 = \mu_1 < \mu_2 \leq \dots \leq \mu_n$ denote the eigenvalues of $L$.
 \end{theorem}
 
-Further, let us make the following observation on $G$'s cardinality, where we use the Handshaking lemma and the fact that $G$ is $(2k + 1)$-regular.
-$$2|E(G)| = \sum_{v \in V(G)} d(v) = |V(G)|(2k + 1) \Rightarrow |V(G)| \equiv 0 \mod 2$$
+\begin{theorem}[Cauchy-Binet Formula]
+    Let $A$ be an $n \times m$ matrix, $B$ an $m \times n$ matrix, and $D$ an $m \times m$ diagonal matrix. Let $[m] := {1, \dots, m}$. For $S \in {[m] \choose n}$, $A_{[n],S}$ the $n \times n$ matrix whose columns are the columns of $A$ at indices from $S$. Then,
+    $$\det(ADB) = \sum_{S \in {[m] \choose n}} \det\left(A_{n], S}\right) \det\left(B_{S,[n]}\right) \prod_{i \in S} d_i$$
+\end{theorem}
 
-Knowing that the cardinality is even, lets us easily check that Tutte's condition holds if $|S| = 0$. From now on we will then assume $|S| > 0$. Again, using $G$'s regularity, the following inequality holds:
-\begin{equation}\label{edge-ineq}
-\#\lbrace\text{edges incident to S from odd components}\rbrace \leq \#\lbrace\text{edges incident to S}\rbrace \leq |S|(2k + 1)
-\end{equation}
+To apply it to multigraphs, we first need to define a version of the laplacian matrix for multigraph.
+We use the natural extension of the diagonal and adjacency matrix for multigraphs, where the latter is defined such that $a_{ij} = \left| e_{ij} \in E(G) \right|$, assuming, of course, that we somehow can differentiate them.
+Then $\bar{L} = \text{diag}(d_1, \dots, d_n) - A$ accounting for repetitions.
 
-Let now $C$ be an odd component of $G - S$. If we count all the vertices incident to some vertex of $C$, we have from one side the $(2k + 1)$ regularity, and from the other the edges within $C$ (beginning and end inside C) and those leaving $C$. By construction, all edges leaving C must necessarily be incident to $S$ (see the supporting drawing). Hence, the following holds:
-$$|C|(2k + 1) = 2|E(C)| + |E(C,G-C)| = 2|E(C)| + |E(C,S)|$$
+There remains just one key observation to solve this problem.
+\begin{lemma}
+    Let $L = Q \cdot Q^T$ be the standard decomposition in signed matrices of the laplacian matrix of the graph \emph{removing} repeated edges.
+    Let $m$ be the number of edges without repetitions and $k_i, i \in [m]$ the multiplicity of edge $i$.
+    Lastly, let $D$ be an $m \times m$ diagonal matrix such that $d_{ii} = k_i$. Then it holds:
+    $$\bar{L} = Q \cdot D \cdot Q ^T$$
+\end{lemma}
 
-\begin{figure}[h!]
-    \centering
-    \resizebox{.8\linewidth}{!}{
-        \begin{tikzpicture}
-            % LHS Drawing
-            \draw (0,0) circle (3cm);
-            \node[circle, draw = black] (node-1) at (-1,-1) {};
-            \node[circle, draw = black] (node-2) at (-1,1) {};
-            \node[circle, draw = black] (node-3) at (1.5,-1) {};
-            \node[circle, draw = black] (node-4) at (-1,-2) {};
-            \node[circle, draw = black] (node-5) at (0,1.5) {};
-            \draw[dashed] (node-1) -- (node-2);
-            \draw[dashed] (node-1) -- (node-3);
-            \draw[dashed] (node-1) -- (node-4);
-            \draw[dashed] (node-2) -- (node-3);
-            \draw[dashed] (node-3) -- (node-4);
-            \draw[dashed] (node-3) -- (2,4.5);
-            \draw[dashed] (node-5) -- (4,4.5);
-
-            % Separating Line
-            \draw[very thick] (10, -3) -- (10, 10);
-
-            % RHS Drawing
-            \draw (20, 0) circle (3cm) node (C) {\Huge C};
-            \draw (17, 5) circle (1cm) node {\Huge Even};
-            \draw[rounded corners] (30, -3) rectangle (33, 10);
-            \node at (31.5, 6) {\Huge S};
-            \draw(40, 0) circle (2.5cm) node (N1) {\Huge Odd};
-            \draw(37.5, 5) circle (1.5cm) node (N2) {\Huge Odd};
-            \draw[dashed, thick] (C.0) -- (31.5, 0);
-            \draw[dashed, thick] (C.10) -- (31.5, 2);
-            \draw[dashed, thick] (C.20) -- (31.5, 4);
-            \draw[dashed, thick] (C.45) -- (31.5, 8);
-            \draw[dashed, thick] (N2.200) -- (32.5, 5);
-            \draw[dashed, thick] (N2.170) -- (32.5, 7);
-            \draw[dashed, thick] (N1.200) -- (32.5, -1);
-            \draw[dashed, thick] (N1.170) -- (32.5, 1);
-            \node at (28, 4.5) {\Huge $\vdots$};
-            \node at (28, 4) {\Huge $\vdots$};
-            \draw[very thick, red, dashed] (26, -3) -- (26, 7) node[text=red,anchor=south] {\Huge $E(C, S) \geq \lambda(G)$};
-        \end{tikzpicture}
-    }
-\end{figure}
-
-Moreover, from the previous equality we observe that LHS has the parity of $|C|$, and the RHS has the parity of $|E(C,S)|$. Thus, $|C|$ and $|E(C,S)|$ have the same parity. In particular, $|E(C,S)|$ is odd. Lastly, given that $S$ disconnects $G$, by definition of edge connectivity we have
-$$|E(C,S)| \geq \lambda(G) = \lbrace 2k, 2k + 1 \rbrace \overset{|E(C,S)| odd}{\Longrightarrow} |E(C,S)| \geq 2k + 1$$
-
-Inserting this last inequality to (\ref{edge-ineq}) we have:
-$$c_o(G-S)(2k + 1) \leq \#\lbrace\text{edges incident to S from odd components}\rbrace \leq |S|(2k + 1) \Rightarrow c_o(G-S) \leq |S|$$
-which is exactly Tutte's condition, and hecne $G$ contains a perfect matching.
+Then the prove follows immediately using the Cauchy-Binet formula.
+We similarly remove one row from the Q matrix (and one column from the transposed one), then
+$$\det(\bar{L'}) = \det\left((Q')\cdot(Q')^T\right) = \sum_{S \in {n-1 \choose [m]}} \det\left(Q_S'\right) \cdot \det((Q^{S})') \cdot \prod_{i \in S} k_i$$
+which is exactly the number of spanning trees in the simple graph using $S$ edges times the multiplicity of all those edges.
 
 \end{document}
