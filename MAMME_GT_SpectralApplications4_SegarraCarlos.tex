@@ -64,7 +64,7 @@ There remains just one key observation to solve this problem.
 \end{lemma}
 
 Then the prove follows immediately using the Cauchy-Binet formula.
-We similarly remove one row from the Q matrix (and one column from the transposed one), then
+We similarly remove one row from the Q matrix (and one column from the transposed one), then the determinant of the laplacian for a multigraph without a row or a column equals
 $$\det(\bar{L'}) = \det\left((Q')\cdot(Q')^T\right) = \sum_{S \in {n-1 \choose [m]}} \det\left(Q_S'\right) \cdot \det((Q^{S})') \cdot \prod_{i \in S} k_i$$
 which is exactly the number of spanning trees in the simple graph using $S$ edges times the multiplicity of all those edges.
 
