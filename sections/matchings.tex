@@ -82,8 +82,6 @@ Inserting this last inequality to (\ref{edge-ineq}) we have:
 $$c_o(G-S)(2k + 1) \leq \#\lbrace\text{edges incident to S from odd components}\rbrace \leq |S|(2k + 1) \Rightarrow c_o(G-S) \leq |S|$$
 which is exactly Tutte's condition, and hecne $G$ contains a perfect matching.
 
-\newpage
-
 \subsection[Matchings 3]{Show that the edges of a regular bipartite graph can be decomposed into pairwise disjoint matchings.}
 
 Let $G$ be a $k$-regular bipartite graph, and let $X$ and $Y$ the left and right vertex sets.
@@ -99,8 +97,6 @@ It is clear that $S > |N(S)|$ implies that there is a vertex with cardinality gr
 
 Let us remove the edges corresponding to this matching, and we have a $k-1$-regular graph.
 We progress similarly until we have our edge partition.
-
-\newpage
 
 \subsection[Matchings 6]{Show that a graph $G$ of order $n$ contains $\frac{n-k}{2}$ independent edges if and only if for every $S \subset V(G)$, it holds that}
 $$c_o(G-S) \leq |S| + k$$
@@ -126,8 +122,9 @@ Let us consider $S > 0$, otherwise the statement trivially holds.
         (1) and (2) prove that $G'$ satisfies the Tutte condition, and hence there exists a $n$-matching in $G'$, hence we have an $(n-k)$-matching in $G$ as we wanted to prove.
 \end{itemize}
 
-\newpage
+\subsection[Matchings 7]{(i) Show that there is an ordering of the vertices of $G$ such that the greedy coloring algorithm uses only $\chi(G)$ colors. (ii) Find a bipartite graph with $2n$ vertices which admits an ordering for which the greedy coloring algorithm uses $n$ colors. (iii) For each $k$ find a tree $T$ with maximum degree $k$ which admits an ordering for which the greedy coloring algorithm uses $k+1$ colors.}
 
+\subsection[Matchings 8]{Let $G$ be a graph which contains no induced subgraphs isomorphic to $P_4$. Show that the greedy coloring algorithm always uses $\chi(G)$ colors.}
 \subsection[Matchings 9]{Show that (i) $\chi(G\square H) = \max\{\chi(G),\chi(H)\}$ and (ii) $\chi(G\times H) = \max\{\chi(G),\chi(H)\}$}
 
 \begin{itemize}

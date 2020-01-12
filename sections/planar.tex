@@ -1,0 +1,37 @@
+\section{Planar Graphs}
+
+\subsection[Planar Graphs 2]{Show that a triangulation is $3$-colorable if and only if it is Eulerian (all vertices have an even degree).}
+
+\subsection[Planar Graphs 10]{Show that the only non-planar 3-connected graph not containing a subdivision of $K_{3,3}$ is $K_5$.}
+
+\subsection[Planar Graphs 11]{Show that a graph is outerplanar ifa nd only if it does not contain a subdivision of $K_4$ or $K_{2,3}$.}
+
+\begin{definition}[Outerplanar Graph]
+    A graph $G$ is outerplanar if it admits a plane embedding in which all vertices are in the outer face.
+\end{definition}
+
+Given $G = (V, E)$ let $G' = (V \cup \{ x\}, E \cup \{ xy \: | \: y \in V \})$.
+
+\begin{claim}
+    $G$ is outerplanar if and only if $G'$ is planar
+\end{claim}
+\begin{proof}
+    \begin{itemize}
+        \item[$(\Rightarrow)$] If all vertices are in the outer face, clearly we can connect each one to the center one without crossing.
+        \item[$(\Leftarrow)$] Let's suppose $G$ is not outerplanar, then $\exists v$ not in the outer face.
+            Then necessarily $\{x , v\}$ produces a crossing and $G'$ is not planar.
+    \end{itemize}
+\end{proof}
+
+It is clear that we have,
+$$ G \text{ outerplanar } \Leftrightarrow G' \text{ planar } \Leftrightarrow G' \text{ does not contain a subdivision of $K_5$ or $K_{3,3}$ }$$
+Lastly let us prove the following claim:
+\begin{claim}
+    $G$ does not contain a subdivision of $K_4$ or $K_{2,3}$ if and only if $G'$ does not contain a subdivision of $K_5$ or $K_{3,3}$.
+\end{claim}
+\begin{proof}
+    \begin{itemize}
+        \item[$(\Rightarrow)$] OK
+        \item[$(\Leftarrow)$] Suppose that $G$ contains a subdivision of $K_4$ or $K_{2,3}$ then, joining $x$ with all vertices of $G$ we produce either a subdivision of $K_5$ or $K_{3,3}$ within $G'$.
+    \end{itemize}
+\end{proof}
