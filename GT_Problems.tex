@@ -1,0 +1,42 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[linkcolor=blue]{hyperref}
+\usepackage[a4paper, left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\newtheorem{obs}{Observation}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition} % amsthm only
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+%opening
+\title{Parallelism Module \\[3pt]
+\large Graph Theory - Solved Problems}
+\author{\textbf{Carlos Segarra}}
+\date{\normalsize\today{}}
+
+\begin{document}
+
+    \maketitle
+
+    \tableofcontents
+
+    \newpage
+
+    \input{sections/matchings}
+    \newpage
+    \input{sections/planar}
+    \newpage
+    \input{sections/minors_1}
+    \newpage
+    \input{sections/minors_2}
+    \newpage
+    \input{sections/spectra}
+\end{document}
