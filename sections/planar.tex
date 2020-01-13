@@ -2,6 +2,17 @@
 
 \subsection[Planar Graphs 2]{Show that a triangulation is $3$-colorable if and only if it is Eulerian (all vertices have an even degree).}
 
+\begin{itemize}
+    \item[$(\Rightarrow)$] We will argue by contrapositive:
+        $$ G \text{ triangulation not eulerian } \Rightarrow \exists v \in V(G) \text{ s.t. } d(v) \text{ is odd } \Rightarrow \text{ not 3-colorable }$$
+    \item[$(\Leftarrow)$] Let us first observe the following:
+        $$ G \text{ triangulation } \Rightarrow m = 3n -6$$
+        With this, we can see that the minimum degree can't be 6, hence it must be at least 4.
+        Let's then pick $v$ such that $d(v) = 4$.
+        Draw a romboid with $v$ in the middle and contract one of the diagonals and apply induction.
+\end{itemize}
+
+
 \subsection[Planar Graphs 10]{Show that the only non-planar 3-connected graph not containing a subdivision of $K_{3,3}$ is $K_5$.}
 
 \subsection[Planar Graphs 11]{Show that a graph is outerplanar ifa nd only if it does not contain a subdivision of $K_4$ or $K_{2,3}$.}
