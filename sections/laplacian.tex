@@ -1,0 +1,42 @@
+\section{Laplacian of a Graph}
+
+\subsection[Laplacian - 1]{1. Prove that the chromatic number verifies $\chi(G) \leq 1 + \lambda_1$.}
+
+We will apply induction on $n = |V(G)|$.
+\begin{itemize}
+    \item $n = 1$: clear
+    \item $n > 1$:
+        we know from a corollary of the Courant-Fischer inequalities that the average degree of a graph, $\bar{d}(v) \leq \lambda_1 \leq \Delta(G)$.
+        This means that there exists $v \in V(G)$ such that $d(v) \leq \lambda_1$.
+        It is clear that if we proof that $G' = G \backslash \{ v \}$ is $1 + \lambda_1$ colorable, then so will be $G$.
+        We just have to observe that, necessarily, $\lambda_1' < \lambda_1$ what finishes our proof.
+\end{itemize}
+
+\subsection[Laplacian - 2]{2. Let $G$ be the edge-disjoint union of graphs $G_1$ and $G_2$. Show that $\lambda_1(G) \leq \lambda_1(G_1) + \lambda_2(G_2)$.}
+
+\subsection[Laplacian - 5]{5. Show that a connected graph $G$ with maximum eigenvalue $\lambda_1$ is bipartite if and only if $-\lambda_1$ is an eigenvalue of $G$.}
+
+\subsection[Laplacian - 6]{6. Let $d_i$ denote the degree of vertex $v_i$ in a connected graph $G$. Show that:}
+$$\frac{1}{m} \sum_{v_i \sim v_j} \sqrt{d_i d_j} < \lambda_1(G) < \max_i \frac{1}{d_i} \sum_{v_i \sim v_j} \sqrt{d_i d_j}$$
+
+\subsection[Laplacian - 10]{10. Let $G \square H$ denote the cartesian product of $G$ and $H$:}
+
+\begin{enumerate}
+    \item[\textbf{(a)}] \textbf{Show that the Laplace eigenvalues of $G\square H$ are precisely $\mu_i(G) + \mu_j(H)$, for all $i, j$.}
+    \item[\textbf{(b)}] \textbf{The $n$-cube $Q_n$ is defined as $Q_1 = K_2$ and $Q_n = K_2 \square Q_{n-1}$ for $n \geq 2$. Determine $\mu_2(Q_n)$.}
+    \item[\textbf{(c)}] \textbf{Show that $i(Q_n) = 1$.}
+\end{enumerate}
+
+\subsection[Laplacian - 12]{12. Let $G$ be an $r$-regular graph with eigenvalues $r = \lambda_0 \geq \lambda_1 \geq \dots \geq \lambda_{n-1}$. Show that the stability number $\alpha(G)$ (cardinality of the largest clique in the complement of $G$) satisfies $\alpha(G) \leq \frac{-n \lambda_{n-1}}{r - \lambda_{n-1}}$. Find an analogous inequality for $\omega(G)$ the cardinality of the largest clique of $G$.}
+
+\subsection[Laplacian - 15]{15. Prove that the Petersen graph is not Hamiltonian by using the observation that a Hamiltonian cycle in the Petersen graph would give an induced cycle of length 10 in its line graph. Consider the spectrum of this line graph and use interlacing.}
+
+The indication stems from the following lemma:
+\begin{lemma}
+    If a graph $G$ is Hamiltonian, then its line graph $L(G)$ contains a cycle of length $n$, such that $n = V(G)$, as its induced subgraph.
+\end{lemma}
+Let us now recall the characteristic polynomial of the Petersen graph:
+$$\phi(G_P, x) = (x-3)(x-1)^5(x+2)^4$$
+we also know, if $G$ $r$-regular,
+$$\phi(L(G), x) = (x+2)^{m-n} \phi(G, x + 2 - r) \Rightarrow \phi(L(G_P)) = (x+2)^5(x-4)(x+1)^4(x-2)^5$$
+we compare this with the spectrum of the line graph and use interlacing (with $P$ being the projection matrix from dim 15 to dim 10).
