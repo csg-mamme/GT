@@ -43,3 +43,10 @@
 \contentsline {subsection}{\numberline {8.2}Applications - 4}{15}{subsection.8.2}
 \contentsline {subsection}{\numberline {8.3}Applications - 10}{15}{subsection.8.3}
 \contentsline {subsection}{\numberline {8.4}Applications - 11}{15}{subsection.8.4}
+\contentsline {section}{\numberline {9}Random Walks in Graphs}{16}{section.9}
+\contentsline {subsection}{\numberline {9.1}Random Walks - 1}{16}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Random Walks - 5}{16}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Random Walks - 7}{16}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Random Walks - 8}{16}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Random Walks - 10}{16}{subsection.9.5}
+\contentsline {subsection}{\numberline {9.6}Random Walks - 11}{16}{subsection.9.6}

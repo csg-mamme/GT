@@ -1,0 +1,37 @@
+\section{Random Walks in Graphs}
+
+\subsection[Random Walks - 1]{1. Show that the mixing rate of the $n$-cube with a loop at every vertex is $\frac{n-1}{n}$. What is the number of steps of a random walk in $\mathcal{Q}_4$ such that the probability of veing at a vertex is $\frac{1}{16} \pm 10^{-3}$?}
+
+First we use that $Spec(A \times B) = (\lambda_i + \mu_j)$, and that $Q^n = K_2 \times \dots \times K_2$ $n$ times.
+Then $Spec(Q^n) = n - 2i, i \in [0,n]$ with multiplicity $\binom{n}{i}$.
+Observe that adding one loop yields an adjacency matrix:
+$$Adj(Q^n \text{ and a loop }) = Adj(Q^n) + I$$ and we just have to add one to the eigenvalues.
+To get all those positive, we might add $n-1$ more loops (observe that it does not affect the mixing rate, just slow down the walk).
+Then we obtain $\lambda_2$ of $N$ easily.
+
+\subsection[Random Walks - 5]{5. Consider a random walk in the complete graph $K_n$. What is the expected number of steps to visit each node at least once?}
+
+Let us define the following independent random variables:
+$$X_i : \# \text{ steps to visit vertex $i + 1$ when visited $i$ } \quad Pr(X_i = k) = \frac{i}{n}^k \frac{n-i-1}{k} = (1 - p)^k k$$
+which follows a geometric distribution and hence has expected value $\frac{1}{k}$.
+Then we can add those expectancies to get our result.
+
+\subsection[Random Walks - 7]{7. A tournament is an oriented complete graph. Show that, for each $n$, there is a tournament with at least $\frac{n!}{2^{n-1}}$ directed Hamiltonian paths.}
+
+Let us consider the paths of length $n$, there are a total of $n!$ such paths.
+Let's now pick a tournament at random by independently choosing orientations of edges with probability $\frac{1}{2}$.
+Then just count the expected number of well-oriented paths.
+
+\subsection[Random Walks - 8]{8. Show that a graph $G$ with $n$ vertices and $m$ edges contains a bipartite graph with at least $\frac{m}{2}$ edges.}
+
+Let us choose at random a subset $S \subset V(G)$ and add $v \in V(G)$ to $S$ with probability $\frac{1}{2}$.
+We can check that the expected value of edges egressing $S$ is exactly $\frac{m}{2}$.
+
+\subsection[Random Walks - 10]{10. Suppose that $G$ contains no subgraph isomorphic to $H$. Prove that there is a coloring of the edges of the complete graph such that no subgraph induced by the edges of the same color contains a copy of $H$.}
+
+Consider $k$ copies of $G$, paint each with one color, and embed them into $K_n$.
+Prove that there is a coloring that covers all edges.
+
+\subsection[Random Walks - 11]{11. Let $G$ be a graph with $n$ vertices and average degree $d{av}$ edges. Show that the stability number of $G$ is}
+$$\alpha(G) \geq \frac{n}{2d_{av}}$$
+Weird statement?
