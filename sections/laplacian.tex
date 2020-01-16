@@ -2,15 +2,9 @@
 
 \subsection[Laplacian - 1]{1. Prove that the chromatic number verifies $\chi(G) \leq 1 + \lambda_1$.}
 
-We will apply induction on $n = |V(G)|$.
-\begin{itemize}
-    \item $n = 1$: clear
-    \item $n > 1$:
-        we know from a corollary of the Courant-Fischer inequalities that the average degree of a graph, $\bar{d}(v) \leq \lambda_1 \leq \Delta(G)$.
-        This means that there exists $v \in V(G)$ such that $d(v) \leq \lambda_1$.
-        It is clear that if we proof that $G' = G \backslash \{ v \}$ is $1 + \lambda_1$ colorable, then so will be $G$.
-        We just have to observe that, necessarily, $\lambda_1' < \lambda_1$ what finishes our proof.
-\end{itemize}
+First we prove by induction the existence of a critical subgraph.
+Then we check its minimum degree, and apply interlacing between the original adjacency and the one corresponding to the critical subgraph.
+The result yields.
 
 \subsection[Laplacian - 2]{2. Let $G$ be the edge-disjoint union of graphs $G_1$ and $G_2$. Show that $\lambda_1(G) \leq \lambda_1(G_1) + \lambda_2(G_2)$.}
 
