@@ -1,0 +1,20 @@
+\section{Random Graphs}
+
+\subsection[Random Graphs - 1]{1. Show that, for a fixed $p$, almost all graphs in $G_{n,p}$ have diameter two.}
+
+Immediate using the $\mathcal{P}(i,j)$ property with $A = \emptyset$ and $B = \{ x, y \}$.
+
+\subsection[Random Graphs - 2]{2. Show that, if almost all graphs have property $P$ and also property $Q$, then almost all graphs have both properties.}
+
+Almost all graphs have property $P$ means $\lim_{n \rightarrow \infty} Pr(G \in (P \cap G_{n,p})) = 1$, hence taking complementaries,
+$$1 - \lim_{n \rightarrow \infty} Pr(G \in \overline{(P \cap Q) \cap G_{n,p}}) = 1$$
+
+\subsection[Random Graphs - 3]{3. Show that, for $p$ fixed, almost no graph in $G_{n,p}$ has a separating complete subgraph.}
+
+We want to see that, given two non-adjacent vertices, removing $K_j$ does not separate them.
+Let $u,v$ be two vertices not in the complete subgraph. We use $\mathcal{P}_{i,j}$ to find $\omega_1$ non-adjacent to the complete graph but adjacent to $u$.
+Then use the property again between the complete graph and $\omega_1$ vs $u$ and $v$ and we have two non-adjacent vertices connected through $u$ and $v$.
+
+\subsection[Random Graphs - 6]{6. Show that almost all graphs in $G_{n,p(n)}$ have an isolated vertex.}
+
+Second moment method and compute.
